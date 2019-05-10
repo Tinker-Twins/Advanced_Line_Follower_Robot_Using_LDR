@@ -11,17 +11,17 @@ ADMUX=ADMUX|0b00000001<<REFS0;				//Set reference voltage to 5V
 unsigned int read_adc()
 {
 int p=0b00000001;
-ADMUX=ADMUX|p;								//MUX0 is set HIGH in order to take input from pin 39 "ADC1"
-ADCSRA=ADCSRA|(0b00000001<<ADSC);			//To start conversion, ADSC is set high
+ADMUX=ADMUX|p;								          //MUX0 is set HIGH in order to take input from pin 39 "ADC1"
+ADCSRA=ADCSRA|(0b00000001<<ADSC);			  //To start conversion, ADSC is set high
 while((ADCSRA&(0b00000001<<ADIF))==0)		//ADIF becomes HIGH when conversion ends
 {}
-ADCSRA=ADCSRA|(0b00000001<<ADIF);			//Reset ADIF bit (ATmega 16 is so designed that once ADIF is set HIGH, it becomes LOW!)
-return(ADC);								//Get the output from ADC
+ADCSRA=ADCSRA|(0b00000001<<ADIF);			  //Reset ADIF bit (ATmega 16 is so designed that once ADIF is set HIGH, it becomes LOW!)
+return(ADC);								            //Get the output from ADC
 }
 
 void main()
 {
-init_adc();			//Call init_adc function
+init_adc();			    //Call init_adc function
 _delay_ms(500);
 unsigned int a;
 unsigned int i;
@@ -29,9 +29,9 @@ unsigned int T;
 unsigned int TON;
 unsigned int TOFF;
 
-DDRD=0b00000000;	//SETTING PART D AS AN INPUT PART
-DDRB=0b11111111;	//SETTING PART B AS AN OUTPUT PART
-PORTD=0b11111111;	//PULLING UP ALL THE PINS OF PART D
+DDRD=0b00000000;	    //SETTING PART D AS AN INPUT PART
+DDRB=0b11111111;	    //SETTING PART B AS AN OUTPUT PART
+PORTD=0b11111111;	    //PULLING UP ALL THE PINS OF PART D
 
 int c;
 
@@ -71,7 +71,7 @@ if(c==0b11111111)	//Junction
 PORTB=0b00011010;	//Beep and move forward
 
 if(c==0b11111000)	//Obstacle on black line
-PORTB=0b00010000; 	//Stop and beep
+PORTB=0b00010000; //Stop and beep
 }
 
 //Outside cave
@@ -91,7 +91,7 @@ if(c==0b11111111)	//Junction
 PORTB=0b00011010;	//Beep and move forward
 
 if(c==0b11111000)	//Obstacle on black line
-PORTB=0b00010000; 	//Stop and beep
+PORTB=0b00010000; //Stop and beep
 }
 }
 }
